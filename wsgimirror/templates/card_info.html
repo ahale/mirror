@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ card_id }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<pre>{{ card_content }}</pre>
+{% endblock %}

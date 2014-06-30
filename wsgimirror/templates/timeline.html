@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}timeline{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+        <p>hi {{ username }} - i have {{ num_items }} entries in your timeline.
+        {% if num_items > 0 %}
+        <ul>
+            {% for item in timeline %}
+            <li> <a href="/timeline/{{ item['id'] }}">{{ item['id'] }}</a>
+            {% endfor %}
+        </ul>
+        {% endif %}
+{% endblock %}

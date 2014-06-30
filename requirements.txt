@@ -1,0 +1,6 @@
+oauth2client
+webob
+jinja2
+apiclient
+brim
+eventlet

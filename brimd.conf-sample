@@ -1,0 +1,50 @@
+# see full brimd.conf-sample
+# https://github.com/gholt/python-brim/blob/master/brimd.conf-sample
+
+[brim]
+user = [[ user ]]
+group = [[ password ]]
+log_level = DEBUG
+port = 5555
+certfile = [[ path to ssl crt - because, basic auth ]]
+keyfile = [[ path to ssl key - because, basic auth ]]
+
+[wsgi]
+apps = wsgi_basic_auth wsgi_fs wsgi_stats callback app index
+log_headers = True
+
+[index]
+call = wsgimirror.check_creds.Index
+path = /
+template_path = [[ path to jinja templates ]]
+creds_path = [[ path to store user api creds ]]
+
+[app]
+call = wsgimirror.app.App
+path = /timeline
+template_path = [[ path to jinja templates ]]
+creds_path = [[ path to store user api creds ]]
+
+[callback]
+call = wsgimirror.callback.Callback
+path = /callback
+callback_uri = [[ call back url: https://app.fqdn:5555/callback ]]
+auth_uri = https://accounts.google.com/o/oauth2/auth
+token_uri = https://accounts.google.com/o/oauth2/token
+client_id = [[ app client oauth id ]]
+client_secret = [[ secret google oauth key ]]
+template_path = [[ path to jinja templates ]]
+creds_path = [[ path to store user api creds ]]
+
+[wsgi_stats]
+call = brim.wsgi_stats.WSGIStats
+path = /stats
+
+[wsgi_basic_auth]
+call = brim.wsgi_basic_auth.WSGIBasicAuth
+auth_path = [[ path to store user basic auth hashes ]]
+
+[wsgi_fs]
+call = brim.wsgi_fs.WSGIFS
+path = /static
+serve_path = [[ path to serve static content ]]

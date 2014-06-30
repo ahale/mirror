@@ -1,0 +1,8 @@
+.idea
+*.egg-info
+*.py[co]
+.DS_Store
+.*.swp
+build
+dist
+

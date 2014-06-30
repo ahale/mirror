@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<p>hi {{ username }}
+<p>i will ask google for offline token that i can refresh at will for these three scopes
+<ul>
+    <li>https://www.googleapis.com/auth/userinfo.profile
+    <li>https://www.googleapis.com/auth/glass.timeline
+    <li>https://www.googleapis.com/auth/glass.location
+</ul>
+pls <a href='/callback/authorize'>authorize</a>
+{% endblock %}
